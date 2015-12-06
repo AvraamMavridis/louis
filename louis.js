@@ -1,7 +1,7 @@
 // Internal dependencies
-var analyze = require('./analyze');
+var analyze = require( './analyze' );
 // External dependencies
-var connect = require('gulp-connect');
+var connect = require( 'gulp-connect' );
 
 var defaultOptions = {
   runs: 1,
@@ -12,9 +12,9 @@ var defaultOptions = {
   userAgent: 'Chrome/37.0.2062.120',
   noExternals: false, // --no-externals block requests to 3rd party domains
   performanceBudget: {} // performanceBudget object
-}
+};
 
-var louis = function(options, callback){
+var louis = function ( options, callback ){
   options =                   options || {};
   options.runs =              defaultOptions.runs;
   options.engine =            options.engine || defaultOptions.engine;
@@ -24,23 +24,21 @@ var louis = function(options, callback){
   options.noExternals =       options.noExternals || defaultOptions.noExternals;
   options.performanceBudget = options.performanceBudget || defaultOptions.performanceBudget;
 
-  if(!!options.url)
+  if( options.url )
   {
     options.url = options.url || defaultOptions.url;
   }
   else{
     options.url = options.url || defaultOptions.url;
-    connect.server({
+    connect.server( {
       port: 8888
-    });
+    } );
   }
 
-  analyze(options, function(){
-    connect.serverClose();    
-  });
+  analyze( options, function (){
+    connect.serverClose();
+  } );
 
-} 
+};
 
-module.exports = louis
-
-
+module.exports = louis;
