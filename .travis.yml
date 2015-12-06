@@ -1,8 +1,14 @@
 language: node_js
 node_js:
-  - "0.10"
-  - "0.8"
-  - "0.6"
-  - iojs
-
-  
+  - "4.1"
+  - "4.0"
+  - "0.12"
+  - "0.12"
+  - "0.11"
+script:
+  - npm install
+  - npm run test
+install:
+  - export DISPLAY=':99.0'
+  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+  - npm install

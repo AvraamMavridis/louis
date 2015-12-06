@@ -6,8 +6,11 @@
     "type": "git",
     "url": "https://github.com/AvraamMavridis/gulp-louis"
   },
-  "author": "Avraam Mavridis",
-  "description": "Performance measurment plugin for gulp based on Phantomas",
+  "author": "Avraam Mavridis <avr.mav@gmail.com>",
+  "contributors": [
+    "Stefan Judis <stefanjudis@gmail.com>"
+  ],
+  "description": "Performance cli tool based on Phantomas",
   "main": "louis.js",
   "scripts": {
     "test": "node node_modules/.bin/mocha"
