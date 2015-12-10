@@ -1,13 +1,11 @@
 // Internal dependecies
-const exec = require( 'child_process' ).exec;
-const fs = require( 'fs' );
 const checkBudget = require( './performanceBudget' );
-
-// External dependecies
-var clc = require( 'cli-color' );
 
 
 import { validate } from './validate';
+import * as clc from 'cli-color';
+import * as fs from 'fs';
+import { exec } from 'child_process';
 
 // Build the phantomas command
 // {options} object
@@ -29,7 +27,7 @@ function buildCommand ( options ){
 
 // Exucute and analyze the resuls
 // {options} object
-function analyze ( options, callback ){
+function _analyze ( options, callback ){
   const command = buildCommand( options );
 
   exec( command + ' --reporter=json > results.json', function ( error, stdout, stderr ){
@@ -62,4 +60,4 @@ function analyze ( options, callback ){
 
 }
 
-module.exports = analyze;
+export const analyze = _analyze;

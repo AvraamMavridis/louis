@@ -1,5 +1,14 @@
+/**
+* Constants
+*
+* @author  Avraam Mavridis      <avr.mav@gmail.com>
+*
+*/
+
+/** External Dependecies **/
 import { number, string, boolean, object } from 'joi';
 
+/** Possible options to evaluate **/
 export const possibleOptions = [
   'requests',
   'gzipRequests',
@@ -131,10 +140,12 @@ export const possibleOptions = [
   'medianLatency',
 ];
 
+/** performanceBudget options Schema validation **/
 const _performanceBudgetSchema = {};
 possibleOptions.forEach( ( val ) => _performanceBudgetSchema[ val ] = number().integer().min( 0 ) );
 export const performanceBudgetSchema = _performanceBudgetSchema;
 
+/** config options Schema validation **/
 export const optionsSchema = {
   runs             : number().integer().min( 0 ),
   url              : string(),
@@ -144,4 +155,19 @@ export const optionsSchema = {
   userAgent        : string(),
   noExternals      : boolean(),
   performanceBudget: object(),
+};
+
+export const defaultOptions = {
+  timeout          : 60,
+  runs             : 1,
+  url              : 'http://www.gmail.com', // the url to be tested
+  viewport         : '1280x1024',
+  engine           : 'webkit', // experimental webkit, gecko
+  userAgent        : 'Chrome/37.0.2062.120',
+  noExternals      : false, // --no-externals block requests to 3rd party domains
+  performanceBudget: {
+    requests       : 2,
+    medianLatency  : 10,
+    slowestResponse: 1000,
+  },
 };

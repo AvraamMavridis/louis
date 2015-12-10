@@ -1,7 +1,23 @@
-import { performanceBudgetSchema, optionsSchema } from './constants';
+/**
+* Validation submodule
+*
+* @author  Avraam Mavridis      <avr.mav@gmail.com>
+*
+*/
+
+/** External Dependecies **/
 import * as joi from 'joi';
 import * as clc from 'cli-color';
 
+/** Internal Dependecies **/
+import { performanceBudgetSchema, optionsSchema } from './constants';
+
+/**
+ * Validates the passed params against a schema
+ *
+ * @param { object} passed options
+ * @param { object } validation schema
+ */
 function validateHelper( options, schema ) {
   joi.validate( options, schema, function ( err ) {
     if ( err !== null ) {
