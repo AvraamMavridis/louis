@@ -13,7 +13,9 @@
   "description": "Performance cli tool based on Phantomas",
   "main": "louis.js",
   "scripts": {
-    "test": "node node_modules/.bin/mocha"
+    "test": "node node_modules/.bin/mocha",
+    "compile": "babel --presets es2015,stage-0 -d lib/ src/",
+    "prepublish": "npm run compile"
   },
   "keywords": [
     "perfmatters, phantomas, performance, speed, analyze, website,website performance tools, website performance monitoring, website performance metrics, website performance optimization, website performance analyzer"
@@ -27,6 +29,11 @@
     "phantomas": "^1.9.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.1.18",
+    "babel-core": "^6.1.18",
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
+    "babel-preset-stage-0": "^6.1.18",
     "chai": "^2.0.0",
     "eslint": "^1.10.3",
     "eslint-config-airbnb": "^2.0.0",
