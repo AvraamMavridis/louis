@@ -1,44 +1,51 @@
-// Internal dependencies
-var analyze = require( './analyze' );
 // External dependencies
-var connect = require( 'gulp-connect' );
+const connect = require( 'gulp-connect' );
 
-var defaultOptions = {
+// Internal dependencies
+const analyze = require( './analyze' );
+
+import { possibleOptions } from './constants';
+
+console.log( possibleOptions );
+
+const defaultOptions = {
+  timeout: 60,
   runs: 1,
-  url: 'http://localhost:8888', // the url to be tested
-  timeout: 15, //timeout for phantomas run
+  url: 'http://www.gmail.com', // the url to be tested
   viewport: '1280x1024',
   engine: 'webkit', // experimental webkit, gecko
   userAgent: 'Chrome/37.0.2062.120',
   noExternals: false, // --no-externals block requests to 3rd party domains
-  performanceBudget: {} // performanceBudget object
+  performanceBudget: {
+    requests: 2,
+    medianLatency: 10,
+    slowestResponse: 1000,
+  },
 };
 
-var louis = function ( options, callback ){
-  options =                   options || {};
-  options.runs =              defaultOptions.runs;
-  options.engine =            options.engine || defaultOptions.engine;
-  options.timeout =           options.timeout || defaultOptions.timeout;
-  options.viewport =          options.viewport || defaultOptions.viewport;
-  options.userAgent =         options.userAgent || defaultOptions.userAgent;
-  options.noExternals =       options.noExternals || defaultOptions.noExternals;
-  options.performanceBudget = options.performanceBudget || defaultOptions.performanceBudget;
+const louis = function () {
 
-  if( options.url )
-  {
-    options.url = options.url || defaultOptions.url;
-  }
-  else{
-    options.url = options.url || defaultOptions.url;
-    connect.server( {
-      port: 8888
-    } );
-  }
+  const passedOptions = {};
 
-  analyze( options, function (){
-    connect.serverClose();
+  process.argv.forEach( function ( val, index, array ) {
+    const param = val.split( '=' );
+    if ( possibleOptions.indexOf( param[ 0 ] ) > -1 ){
+      passedOptions[ param[ 0 ] ] = param[ 1 ];
+    }
   } );
 
+  const options = Object.assign( {}, defaultOptions, passedOptions );
+
+  console.log( options );
+
+  connect.server( {
+    port: 8888,
+  } );
+
+  analyze( options, connect.serverClose );
 };
+
+
+louis();
 
 module.exports = louis;

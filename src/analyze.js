@@ -6,15 +6,15 @@ const checkBudget = require( './performanceBudget' );
 // External dependecies
 var clc = require( 'cli-color' );
 
-// Config
-var validate = require( './validate' );
+
+import { validate } from './validate';
 
 // Build the phantomas command
 // {options} object
 function buildCommand ( options ){
   validate( options );
 
-  var command = __dirname + '/node_modules/.bin/phantomas ' + options.url;
+  var command = __dirname + '/../node_modules/.bin/phantomas ' + options.url;
 
   command += ' --engine ' + options.engine;
   command += ' --runs ' + options.runs;
