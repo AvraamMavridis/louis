@@ -6,7 +6,7 @@
 */
 
 /** External Dependecies **/
-import * as clc from 'cli-color';
+import { whiteBright, red, green, black } from 'cli-color';
 
 /**
  * Checks the results against the performance budget
@@ -14,25 +14,26 @@ import * as clc from 'cli-color';
  * @param { object} budgetOptions
  * @param { object } actual results
  */
-const _checkBudget = function ( budgetOptions, data ) {
+const _checkBudget = function ( budgetOptions, data, callback ) {
   const metrics = data.metrics;
   const bOptions = Object.keys( budgetOptions );
   let bLength = bOptions.length;
 
-  console.log( '\n' + clc.black.bgWhiteBright( 'Metrics analyzed against performance budget' ) + '\n' );
+  console.log( '\n' + black.bgWhiteBright( 'Metrics analyzed against performance budget' ) + '\n' );
 
   while ( bLength-- ) {
     if ( metrics[ bOptions[ bLength ] ] > budgetOptions[ bOptions[ bLength ] ] ) {
-      console.log( clc.whiteBright.bgRed( bOptions[ bLength ] + ': ' ) +
-                  clc.red.bgWhiteBright( ' Expected < ' + budgetOptions[ bOptions[ bLength ] ] ) +
-                  clc.red.bgWhiteBright.underline( ' Actual = ' + metrics[ bOptions [ bLength ] ] ) );
+      console.log( whiteBright.bgRed( bOptions[ bLength ] + ': ' ) +
+                  red.bgWhiteBright( ' Expected < ' + budgetOptions[ bOptions[ bLength ] ] ) +
+                  red.bgWhiteBright.underline( ' Actual = ' + metrics[ bOptions [ bLength ] ] ) );
     }
     else {
-      console.log( clc.whiteBright.bgGreen( bOptions[ bLength ] + ': ' ) +
-                   clc.green.bgWhiteBright( ' Expected < ' + budgetOptions[ bOptions[ bLength ] ] ) +
-                   clc.green.bgWhiteBright.underline( ' Actual = ' + metrics[ bOptions[ bLength ] ] ) );
+      console.log( whiteBright.bgGreen( bOptions[ bLength ] + ': ' ) +
+                   green.bgWhiteBright( ' Expected < ' + budgetOptions[ bOptions[ bLength ] ] ) +
+                   green.bgWhiteBright.underline( ' Actual = ' + metrics[ bOptions[ bLength ] ] ) );
     }
     delete metrics[ bOptions[ bLength ] ];
+    callback();
   }
 };
 
