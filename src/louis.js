@@ -15,13 +15,13 @@ import { defaultOptions } from './constants';
 
 const louis = function () {
 
-  const passedOptions = {};
+  const passedOptions = { performanceBudget: {} };
 
   process.argv.forEach( function ( val, index, array ) {
     const param = val.split( '=' );
 
     if ( possibleOptions.indexOf( param[ 0 ] ) > -1 ) {
-      passedOptions[ param[ 0 ] ] = param[ 1 ];
+      passedOptions.performanceBudget[ param[ 0 ] ] = param[ 1 ];
     }
   } );
 
