@@ -1,7 +1,7 @@
 {
-  "name": "gulp-louis",
-  "version": "1.0.14",
-  "homepage": "https://github.com/AvraamMavridis/gulp-louis",
+  "name": "louis",
+  "version": "0.0.1",
+  "homepage": "https://github.com/AvraamMavridis/louis",
   "repository": {
     "type": "git",
     "url": "https://github.com/AvraamMavridis/gulp-louis"
@@ -11,7 +11,7 @@
     "Stefan Judis <stefanjudis@gmail.com>"
   ],
   "description": "Performance cli tool based on Phantomas",
-  "main": "louis.js",
+  "main": "lib/louis.js",
   "scripts": {
     "test": "node node_modules/.bin/mocha",
     "compile": "babel --presets es2015,stage-0 -d lib/ src/",
@@ -40,7 +40,6 @@
     "eslint-config-google": "^0.3.0",
     "eslint-plugin-react": "^3.11.2",
     "mocha": "^2.1.0",
-    "phantomas": "^1.13.0",
-    "prompt": "^0.2.14"
+    "phantomas": "^1.13.0"
   }
 }
