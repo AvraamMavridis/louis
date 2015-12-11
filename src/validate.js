@@ -7,7 +7,7 @@
 
 /** External Dependecies **/
 import * as joi from 'joi';
-import * as clc from 'cli-color';
+import { red } from 'cli-color';
 
 /** Internal Dependecies **/
 import { performanceBudgetSchema, optionsSchema } from './constants';
@@ -25,14 +25,14 @@ function validateHelper( options, schema ) {
 
       while ( length-- ) {
         const message = err.details[ length ].message;
-        console.log( clc.red.bgBlack( 'Error on options: ' + message ) );
+        console.log( red.bgBlack( 'Error on options: ' + message ) );
         throw new Error( message );
       }
     }
   } );
 }
 
-export const validate = function ( options ) {
+export const validate = function ( options = {} ) {
   validateHelper( options, optionsSchema );
   validateHelper( options.performanceBudget, performanceBudgetSchema );
   return true;
