@@ -98,7 +98,7 @@ function _analyze( options, callback ) {
 
       // If the performanceBudget object is not empty analyze based on that
       if ( Object.keys( options.performanceBudget ).length ) {
-        checkBudget( options.performanceBudget, data );
+        checkBudget( options.performanceBudget, data, callback );
       }
       else {
         console.log( '\n' + black.bgWhiteBright( 'Metrics analyzed' ) + '\n' );

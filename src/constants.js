@@ -9,7 +9,7 @@
 import { number, string, boolean, object } from 'joi';
 
 /** Possible options to evaluate **/
-export const possibleOptions = [
+export const possiblePerformanceBudgetOptions = [
   'requests',
   'gzipRequests',
   'postRequests',
@@ -140,9 +140,19 @@ export const possibleOptions = [
   'medianLatency',
 ];
 
+export const possibleRunnerOptions = [
+  'runs',
+  'url',
+  'engine',
+  'timeout',
+  'viewport',
+  'userAgent',
+  'noExternals',
+];
+
 /** performanceBudget options Schema validation **/
 const _performanceBudgetSchema = {};
-possibleOptions.forEach( ( val ) => _performanceBudgetSchema[ val ] = number().integer().min( 0 ) );
+possiblePerformanceBudgetOptions.forEach( ( val ) => _performanceBudgetSchema[ val ] = number().integer().min( 0 ) );
 export const performanceBudgetSchema = _performanceBudgetSchema;
 
 /** config options Schema validation **/
