@@ -1,4 +1,5 @@
-# Louis (Project in progress)
+# Louis
+![enter image description here](https://raw.githubusercontent.com/AvraamMavridis/louis/master/logo.jpg)
 
 **Louis** is a cli tool that is used to analyze the performance of a website against a performance budget.
 
@@ -28,71 +29,7 @@ The aim of the plugin is to analyze the performance of the website against a per
 
 
 ### Usage
-
-```bash
-$ npm install --save-dev gulp-louis
-```
-
-```js
-import louis = require('gulp-louis');
-
-gulp.task('louis', function() {
-  louis({
-    timeout: 60,
-    viewport: '1280x1024',
-    engine: 'webkit',
-    userAgent: 'Chrome/37.0.2062.120',
-    noExternals: false,
-    performanceBudget: {
-      requests: 2,
-      medianLatency: 10,
-      slowestResponse: 1000
-    }
-  });
-});
-
-gulp.task('default', ['louis']);
-```
-
-
-### Example
-
-*Example 1 (with specified url)*
-
-```js
-louis({
-  url: 'http://localhost:8000/',
-  timeout: 200,
-  performanceBudget: {
-    request: 10
-    domComplete: 3000
-  }
-})
-```
-
-*Example 2 (without url)*
-This will launch a server and look for an **index.html** in the same folder as the gulpfile.js, then it will analyze the performance of this website.
-
-```js
-louis({
-  timeout: 10,
-  performanceBudget: {
-    request: 10
-    headersSize: 200
-  }
-})
-```
-
-### Output
-
-*Output with specified performance budget*
-
-![Screenshot1](http://oi62.tinypic.com/ay63nn.jpg)
-
-*Output without specified performance budget*
-
-![Screenshot1](http://oi59.tinypic.com/xg9us6.jpg)
-
+...
 
 ### Options
 
@@ -126,17 +63,7 @@ The performance budget option can contain some or all of these values:
 
 
 ### Change log
-#### [1.0.14] - 2015-11-23
-Bug Fixes
--Fix path to phantomas command …
--Add missing gulp-connect dependency
--Change "main" script to "louis.js"
-
-#### [1.0.10] - 2015-02-21
-#### [1.0.9] - 2015-02-21
-#### [1.0.8] - 2015-02-20
-#### [1.0.7] - 2015-02-17
-#### [1.0.0] - 2015-02-16
+#### [1.0.0] - December 2015
 
 
 ## License
