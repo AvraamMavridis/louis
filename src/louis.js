@@ -5,40 +5,32 @@
 *
 */
 
-/** External Dependecies **/
-const connect = require( 'gulp-connect' );
-
 /** Internal Dependecies **/
 import { possiblePerformanceBudgetOptions, possibleRunnerOptions } from './constants';
 import { analyze } from './analyze';
 import { defaultOptions } from './constants';
 
-const louis = function () {
+const louis = function (url, options) {
+  return new Promise( function( resolve, reject ) {
+    const passedOptions = { performanceBudget: {} };
 
-  const passedOptions = { performanceBudget: {} };
+    Object.keys( options ).forEach( function ( key ) {
+      const value = options[ key ];
 
-  process.argv.forEach( function ( val, index, array ) {
-    const param = val.split( '=' );
+      if ( possiblePerformanceBudgetOptions.indexOf( key ) > -1 ) {
+        passedOptions.performanceBudget[ key ] = value;
+      }
 
-    if ( possiblePerformanceBudgetOptions.indexOf( param[ 0 ] ) > -1 ) {
-      passedOptions.performanceBudget[ param[ 0 ] ] = param[ 1 ];
-    }
+      else if ( possibleRunnerOptions.indexOf( key ) > -1 ) {
+        passedOptions[ key ] = value;
+      }
 
-    else if ( possibleRunnerOptions.indexOf( param[ 0 ] ) > -1 ) {
-      passedOptions[ param[ 0 ] ] = param[ 1 ];
-    }
+    } );
 
+    options = Object.assign( {}, defaultOptions, passedOptions );
+
+    analyze( options, resolve );
   } );
-
-  const options = Object.assign( {}, defaultOptions, passedOptions );
-
-  connect.server( {
-    port: 8888,
-  } );
-
-  analyze( options, connect.serverClose );
 };
 
-louis();
-
-module.exports = louis;
+export default louis;
