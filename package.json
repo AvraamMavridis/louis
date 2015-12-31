@@ -4,15 +4,23 @@
   "homepage": "https://github.com/AvraamMavridis/louis",
   "repository": {
     "type": "git",
-    "url": "https://github.com/AvraamMavridis/gulp-louis"
+    "url": "https://github.com/AvraamMavridis/louis"
   },
   "author": "Avraam Mavridis <avr.mav@gmail.com>",
   "description": "Performance cli tool based on Phantomas",
-  "main": "lib/louis.js",
+  "bin": {
+    "louis": "src/cli.js"
+  },
   "scripts": {
-    "test": "./node_modules/.bin/mocha --compilers js:babel-register",
+    "test": "mocha --compilers js:babel-register",
     "compile": "babel --presets es2015,stage-0 -d lib/ src/",
-    "prepublish": "npm run compile"
+    "prepublish": "npm run compile",
+    "watch": "npm-scripts-watcher"
+  },
+  "watch": {
+    "src/**/*.js": [
+      "compile"
+    ]
   },
   "keywords": [
     "perfmatters, phantomas, performance, speed, analyze, website,website performance tools, website performance monitoring, website performance metrics, website performance optimization, website performance analyzer"
@@ -20,10 +28,12 @@
   "license": "ISC",
   "dependencies": {
     "cli-color": "^0.3.2",
+    "connect": "^3.4.0",
     "gulp-connect": "^2.2.0",
     "gulp-util": "^3.0.3",
     "joi": "^5.1.0",
-    "phantomas": "^1.9.0"
+    "phantomas": "^1.13.0",
+    "serve-static": "^1.10.0"
   },
   "devDependencies": {
     "babel-cli": "^6.1.18",
@@ -37,7 +47,6 @@
     "eslint-config-airbnb": "^2.0.0",
     "eslint-config-google": "^0.3.0",
     "eslint-plugin-react": "^3.11.2",
-    "mocha": "^2.1.0",
-    "phantomas": "^1.13.0"
+    "mocha": "^2.1.0"
   }
 }
