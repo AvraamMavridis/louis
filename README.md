@@ -3,7 +3,7 @@
 
 **Louis** is a cli tool that is used to analyze the performance of a website against a performance budget.
 
-[![Build Status](https://travis-ci.org/AvraamMavridis/louis.svg?branch=master)](https://travis-ci.org/AvraamMavridis/louis)
+[![Build Status](https://travis-ci.org/AvraamMavridis/louis.svg?branch=master)](https://travis-ci.org/AvraamMavridis/louis) [![Greenkeeper badge](https://badges.greenkeeper.io/AvraamMavridis/louis.svg)](https://greenkeeper.io/)
 
 ## Introduction
 
